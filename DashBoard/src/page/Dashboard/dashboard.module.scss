@@ -1,0 +1,208 @@
+@import "src/assets/styles/index";
+
+.topsite {
+  display: flex;
+  flex-direction: column;
+
+  @include tablet-desktop {
+    flex-direction: row;
+    gap: 2.4rem;
+
+    form {
+      width: 50%;
+    }
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+
+    &__figure {
+      width: 6rem;
+    }
+
+    &__title {
+      font-size: 2.4rem;
+    }
+
+  }
+
+}
+
+.main {
+
+  &__title {
+    text-align: center;
+    font-size: 3.2rem;
+    line-height: 4rem;
+    margin: 1.6rem 0;
+  }
+
+  &__menu {
+    margin: 1.6rem 0;
+
+    @include tablet-desktop {
+      display: none;
+    }
+  }
+
+  &__ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1.6rem 0;
+    gap: .2rem;
+
+    @include just-mobile {
+      gap: 4rem;
+      display: none;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    a {
+      font-size: 1.2rem;
+      color: #33aa97;
+      text-decoration: none;
+      transition: all ease-in-out .3s;
+      padding: 1.2rem 4rem;
+      border-radius: 2.4rem;
+    }
+
+    a:hover {
+      color: #fff;
+      background-color: #33aa97;
+    }
+  }
+
+  &__cards {
+    margin: 4rem 0;
+
+
+    &__card {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      margin: 2.4rem 0;
+      box-shadow: 0 0 10px 2px #ccc;
+
+      @include tablet-desktop {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      &__box {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+
+        @include tablet-desktop {
+          flex: 1;
+        }
+
+
+        &__figure {
+          @include just-mobile {
+            min-width: 12rem;
+          }
+          width: 6rem;
+          flex: 1;
+        }
+
+        &__descriptions {
+          flex: 2;
+
+          &__title {
+            padding: 1rem 0;
+            color: #33aa97;
+            display: block;
+            font-size: 1.2rem;
+          }
+
+          &__text {
+            font-size: 1.5rem;
+            font-family: Roboto-bold, serif;
+            line-height: 2.4rem;
+
+          }
+
+          &__sub {
+            color: darken(#fff, 50%);
+            padding: 1rem 0;
+            display: block;
+            font-size: 1.1rem;
+          }
+        }
+      }
+    }
+
+  }
+
+}
+
+.rigthcard {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+
+  &__div {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    flex: 1;
+    border-right: 1.6px solid #33aa97;
+
+    figure {
+      border-radius: 50%;
+      overflow: hidden;
+    }
+  }
+
+  &__text {
+    font-size: 1.6rem;
+    color: #33aa97;
+    flex: 1;
+    display: block;
+    padding: 4rem;
+  }
+}
+
+.menu {
+  align-items: flex-start;
+  justify-content: center;
+  background-color: #fff;
+  position: fixed;
+  flex-direction: column;
+  display: flex;
+  width: 300px;
+  height: max-content;
+  z-index: 2;
+  padding: 2.4rem;
+  overflow: hidden;
+  transition: all ease-in-out .4s;
+  top: 0;
+
+  li {
+    list-style: none;
+    line-height: 2.4rem;
+  }
+
+  a {
+    font-size: 1.6rem;
+  }
+
+  &__close {
+    width: 0;
+  }
+
+  &_none {
+    width: 0;
+    overflow: hidden;
+    position: fixed;
+    transition: all ease-in-out .4s;
+  }
+}

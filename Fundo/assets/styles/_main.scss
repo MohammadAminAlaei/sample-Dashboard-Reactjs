@@ -1,0 +1,110 @@
+@import "index";
+
+.main {
+  margin: 2.4rem 0 !important;
+
+  @include just-tablet {
+    margin: 180px 0 !important;
+  }
+
+  @include just-desktop {
+    margin: 200px 0 !important;
+  }
+
+  &__div1 {
+    display: flex;
+    flex-wrap: wrap;
+
+    @include just-mobile {
+      flex-direction: column;
+    }
+
+    @include tablet-desktop {
+      gap: 1.6rem;
+    }
+
+
+    &__texts {
+      display: flex;
+      flex-direction: column;
+      gap: .8rem;
+      flex: 2;
+
+      @include just-mobile {
+        margin-bottom: 1.2rem;
+      }
+
+      &__title {
+        font-size: clamp(2.4rem, 2.5vw, 3.6rem)
+      }
+
+      &__sub {
+        margin: .8rem 0;
+        font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+        font-family: Roboto-Light, serif;
+      }
+
+      &__text {
+        font-size: clamp(1rem, 2.5vw, 1.3rem);
+        line-height: 1.8rem;
+        color: darken(#fff, 60%);
+      }
+    }
+
+    &__gym {
+      @include tablet-desktop {
+        flex: 1;
+      }
+    }
+
+    &__parking {
+      @include tablet-desktop {
+        flex: 1;
+      }
+    }
+
+  }
+
+  &__icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    flex-direction: column;
+    padding: 4rem;
+    gap: 1.2rem;
+
+
+    span {
+      font-size: 1.6rem;
+    }
+
+    i {
+      font-size: 4.8rem;
+    }
+  }
+
+  &__light {
+    background-color: #eff3fc;
+  }
+
+  &__div2 {
+    display: flex;
+    margin: .3rem 0;
+
+    @include just-mobile {
+      flex-direction: column;
+    }
+
+    &__arrow {
+      @include tablet-desktop {
+        flex: none;
+      }
+    }
+
+
+  }
+
+}
+
+

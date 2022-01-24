@@ -1,0 +1,153 @@
+@import "index";
+
+.header {
+  background: linear-gradient(45deg, #7783b3, #918bb1);
+  position: relative;
+
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include tablet-desktop {
+      padding: 2.4rem 0;
+    }
+
+    &__text {
+      color: #fff;
+      font-size: 1.6rem;
+    }
+
+    &__icons {
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+
+      button {
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        color: #fff;
+        font-size: 1.6rem;
+        font-family: Roboto-Light, serif;
+      }
+
+      &__ul {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        flex-direction: column;
+        background-color: #fff;
+
+        li {
+          list-style: none;
+
+          a {
+            display: block;
+            font-size: 2.4rem;
+            text-decoration: none;
+            color: #000;
+          }
+        }
+
+        &__close {
+          width: 200px;
+          background-color: transparent;
+          border: none;
+          font-size: 2.4rem;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    padding: 4rem 0;
+
+    @include tablet-desktop {
+      max-width: 38%;
+    }
+
+    @include just-desktop {
+      max-width: 35% !important;
+    }
+
+    &__title {
+      font-size: clamp(2.4rem, 2.5vw, 4rem);
+      color: #fff;
+
+      @include tablet-desktop {
+        line-height: 4.8rem;
+      }
+
+    }
+
+    &__text {
+      color: #fff;
+      font-family: Roboto-Light, serif;
+      line-height: 2rem;
+      margin: 3.2rem 0;
+      font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+      @include tablet-desktop {
+        line-height: 3.2rem;
+      }
+    }
+
+    &__buttons {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      flex-wrap: wrap;
+
+      button {
+        padding: 1.4rem 0;
+        min-width: 150px;
+        cursor: pointer;
+        color: #fff;
+      }
+
+      &__buy {
+        background: #14192d;
+        border-color: #14192d;;
+      }
+
+      &__ex {
+        background-color: transparent;
+        border: 2px solid #fff;
+      }
+    }
+  }
+
+  &__figure {
+    @include tablet-desktop {
+      display: none;
+    }
+  }
+
+  @include tablet-desktop {
+    &:after {
+      content: '';
+      background-repeat: no-repeat;
+      display: block;
+      background-image: url("../images/House.jpg");
+      background-size: 60%;
+      background-position: right;
+      position: absolute;
+      bottom: -180px;
+      width: 100%;
+      height: 100%;
+      right: 0;
+    }
+  }
+}
