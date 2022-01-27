@@ -1,44 +1,66 @@
 import React, {Component} from 'react';
 import styles from './dashboard.module.scss';
 import logo from 'assets/images/dipella_icon.png';
-import {InputSearch} from "../../components";
-import {Helmet} from "react-helmet";
+import {InputSearch} from '../../components';
+import {Helmet} from 'react-helmet';
 import defaultStyle from 'assets/styles/defalut.module.scss';
 import {getCourses} from 'api/courses.api';
 import {getAllCourses} from 'api/courses.api';
-import axios from "axios";
+import axios from 'axios';
+
+const numberPages = (n) => {
+    let number = []
+    for (let i = 1; i <= n; i++) {
+        number.push(i)
+    }
+    return number
+}
 
 class Dashboard extends Component {
 
     state = {
+        allData: '',
         data: '',
-        pages: null,
         nameCourse: 'All Courses Page: 1',
         numberAllCourses: 0,
-        handleMenu: false
+        handleMenu: false,
+        pages: [],
+        achtivePage: 'page1'
     }
 
-    pages = [1, 2, 3, 4, 5, 6, 7, 8];
+    pages = numberPages(this.state.pages)
 
     category = ['Clothing', 'Music', 'Jewelery', 'Tools', 'Kids', 'Home', 'Garden', 'Movies', 'Electronics', 'Games', 'Health', 'Books', 'Outdoors', 'Computers', 'Toys', 'Baby', 'Grocery', 'Beauty', 'Shoes', 'Industrial', 'Automotive', 'Sports']
 
-    async componentDidMount() {
+    componentDidMount() {
+        this.setAPIs();
+    }
+
+    setAPIs = async () => {
         this.setState({
             data: await getCourses(),
-            pages: Math.ceil(this.state.data.length / 10),
-        })
+            allData: await getAllCourses(),
+        });
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevState.allData !== this.state.allData) {
+            this.setState({pages: numberPages(Math.ceil(this.state.allData.length / 10))})
+        }
     }
 
     handlePage = async (page) => {
         await axios.get(`https://6182355884c2020017d89d14.mockapi.io/api/v1/courses?page=${page}&limit=10`)
-            .then(res => this.setState({data: res.data, nameCourse: `All Courses Page : ${page}`}))
+            .then(res => this.setState({data: res.data, nameCourse: `All Courses Page : ${page}`}));
+        this.setState({achtivePage: `page${page}`})
     }
 
     handleCategory = async (category) => {
         await getAllCourses().then(res => res.filter(item => item.category === category)).then(res => this.setState({
             data: res,
             nameCourse: `${category} Courses`,
-            handleMenu: false
+            handleMenu: false,
+            pages: []
         }));
     }
 
@@ -51,6 +73,7 @@ class Dashboard extends Component {
     }
 
     render() {
+        console.log(this.state.pages)
         return (
             <>
                 <ul className={this.state.handleMenu ? styles.menu : styles.menu_none}>
@@ -71,7 +94,7 @@ class Dashboard extends Component {
                             </figure>
                             <span className={styles.topsite__icon__title}> Diprella </span>
                         </div>
-                        <InputSearch name='search'/>
+                        <InputSearch name="search"/>
                     </div>
                 </div>
                 <hr/>
@@ -120,8 +143,11 @@ class Dashboard extends Component {
                     </div>
 
                     <div style={{'display': 'flex', 'justifyContent': 'center', 'gap': '8px', 'flexWrap': 'wrap'}}>
-                        {this.pages.map(page => (
-                            <button style={{'cursor': 'pointer'}} key={page}
+                        {this.state.pages.map(page => (
+                            <button style={{
+                                'cursor': 'pointer',
+                                'background': this.state.achtivePage === `page${page}` ? 'red' : 'green'
+                            }} key={page}
                                     onClick={e => this.handlePage(page)}> {page}</button>
                         ))}
                     </div>
@@ -131,8 +157,6 @@ class Dashboard extends Component {
     }
 }
 
-export
-{
+export {
     Dashboard
-}
-    ;
+};

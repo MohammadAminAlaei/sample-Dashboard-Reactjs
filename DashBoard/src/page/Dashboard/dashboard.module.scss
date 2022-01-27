@@ -168,6 +168,10 @@
     flex: 1;
     display: block;
     padding: 4rem;
+
+    @include just-mobile {
+      padding: 1rem;
+    }
   }
 }
 
